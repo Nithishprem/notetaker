@@ -49,7 +49,7 @@ const Content: React.FC = () => {
 
   const createTopic = api.topic.create.useMutation({
     onSuccess: () => {
-      refetchTopics();
+     void refetchTopics();
     },
   });
 
@@ -99,7 +99,7 @@ const Content: React.FC = () => {
           className="input-bordered input input-sm w-full"
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              createTopic.mutate({
+             void createTopic.mutate({
                 title: e.currentTarget.value,
               });
               e.currentTarget.value = "";
@@ -112,7 +112,7 @@ const Content: React.FC = () => {
         <div>
           {notes?.map((note) => {
             return (
-              <div>
+              <div key={note.id}>
                 <NoteCard
                   note={note}
                   onDelete={() => {
